@@ -1,34 +1,17 @@
 // Variables globals
-Cotxe cotxe1;
+Vehicle cotxe;
+Objectiu obj;
 
 void setup()  // s'executa un cop
 {
-  size(500,500);
-  cotxe = new Cotxe();  // inicialització de l'objecte Cotxe  
+  size(1000, 500);
+  cotxe = new Vehicle("F1.png", 0, 0);  // inicialització de l'objecte Cotxe
+  obj = new Objectiu();  
 }
 
 void draw()  // s'executa repetidament
 {
   background(255);
-    
-}
-
-// Classes
-class Cotxe
-{
-  PImage img_cotxe;
-  float pos_x;
-  float pos_y;
-  float velocitat_x;  
-  // Constructors
-  Cotxe()
-  {
-    img_cotxe = loadImage("F1.png");
-    
-  }
-}
-
-class Objectiu
-{
-  
+  cotxe.visualitzar();
+  cotxe.moure();
 }
