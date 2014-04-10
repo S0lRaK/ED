@@ -16,9 +16,8 @@ class Vehicle
   // Mètodes
   void visualitzar()
   {
-    translate(pos_x, pos_y);  // ha d'anar primer ¿?
     img_cotxe.resize(width/15, height/15);
-    image(img_cotxe, 0, 0);
+    image(img_cotxe, pos_x, pos_y);
   }
   
   void moure()
