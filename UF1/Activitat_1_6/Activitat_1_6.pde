@@ -29,7 +29,6 @@ void draw()  // s'executa repetidament
 void mousePressed()
 {
   objectiu.clicar(mouseX, mouseY);
-  // S'agrega un cotxe només quan es clica al canvas
   cotxes.add(cotxe = new Vehicle(){});
 }
 
