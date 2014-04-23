@@ -10,7 +10,7 @@ class Vehicle
     img_cotxe = loadImage("F1.png");
     posX = mouseX;
     posY = mouseY;
-    velocitat = 3;
+    velocitat = random(5);
   }
   
   // Mètodes
