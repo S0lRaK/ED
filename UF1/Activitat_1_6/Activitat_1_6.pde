@@ -28,20 +28,11 @@ void draw()  // s'executa repetidament
       mostrarMenu();
       break;
     case estatNormal:
-      // Recorrem l'array de cotxes
-      for(byte i = 0; i < cotxes.size(); i++)
-      {
-        Vehicle cotxe = cotxes.get(i);
-        cotxe.visualitzar();
-        cotxe.moure();
-      }
-      objectiu.perSobre(mouseX, mouseY);
-      objectiu.arrossegar(mouseX, mouseY);
-      objectiu.visualitzar();
+      simular();
       break;
-    case estatConstruccio:
-      gestionarEstatConstruccio();
-      break;
+    /*case estatConstruccio:
+      construir();
+      break;*/
     default:
       println("Opció del menú incorrecta.");
       exit();
@@ -69,12 +60,12 @@ void keyPressed()
     case estatMenu:
       keyPressedEstatMenu();
       break;
-    case estatNormal:
+    /*case estatNormal:
       keyPressedEstatNormal();
-      break;
-    case estatConstruccio:
+      break;*/
+    /*case estatConstruccio:
       keyPressedEstatConstruccio();
-      break;
+      break;*/
     default:
       println("Opció del teclat incorrecta.");
       exit();
@@ -101,7 +92,7 @@ void keyPressedEstatMenu()
   }
 }
 
-// Funcions del menú
+// Funcions del menú (depenen del estat i son cridades desde DRAW)
 void mostrarMenu()
 {
   textSize(32);
@@ -111,3 +102,19 @@ void mostrarMenu()
   text("[2] Mode Construcció", width - width/4, height/2);
   text("Pressiona 's' per sortir", width/2, height - height/4);
 }
+
+void simular()
+{
+  // Recorrem l'array de cotxes
+      for(byte i = 0; i < cotxes.size(); i++)
+      {
+        Vehicle cotxe = cotxes.get(i);
+        cotxe.visualitzar();
+        cotxe.moure();
+      }
+      objectiu.perSobre(mouseX, mouseY);
+      objectiu.arrossegar(mouseX, mouseY);
+      objectiu.visualitzar();
+}
+
+
