@@ -1,63 +1,63 @@
-class Objectiu
+class Target
 {
-  float posX, posY;            // coordenades
-  float amplada, altura;       // tamany
-  boolean arrossegat;
-  boolean per_sobre;           // ratolí per sobre l'objecte
-  float compensaX, compensaY;  // compensació al clicar l'objecte amb el ratolí
+  float posX, posY;           // coordinates
+  float width, height;        // size
+  boolean dragged;            
+  boolean over;               // is mouse over target?
+  float offsetX, offsetY;     // compensació al clicar l'objecte amb el ratolí
   
   // Constructors
-  Objectiu(float x, float y, float am, float al)
+  Target(float x, float y, float w, float h)
   {
     posX = x;
     posY = y;
-    amplada = am;
-    altura = al;
-    compensaX = 0;
-    compensaY = 0;
+    width = w;
+    height = h;
+    offsetX = 0;
+    offsetY = 0;
   }
   
-  // Mètodes
-  void visualitzar()
+  // Methods
+  void display()
   {
-    ellipse(posX, posY, amplada, altura);
-    if (arrossegat) fill (#3e87ba);
-    else if (per_sobre) fill (#bf6940);
+    ellipse(posX, posY, width, height);
+    if (dragged) fill (#3e87ba);
+    else if (over) fill (#bf6940);
     else fill (#3db648);
   }
   
-  void clicar(int x, int y)
+  void click(int x, int y)
   {
-    if (x > posX && x < posX + amplada && y > posY && y < posY + altura)
+    if (x > posX && x < posX + width && y > posY && y < posY + height)
     {
-      arrossegat = true;
-      // Seguiment de la ubicació relativa
-      compensaX = posX - x;
-      compensaY = posY - y;
+      dragged = true;
+      // Relative location tracking
+      offsetX = posX - x;
+      offsetY = posY - y;
     }
   }
   
-  void perSobre(int x, int y)
+  void over(int x, int y)
   {
-    if (x > posX && x < posX + amplada && y > posY && y < posY + altura)
+    if (x > posX && x < posX + width && y > posY && y < posY + height)
     {
-      per_sobre = true;
+      over = true;
     } else {
-      per_sobre = false;
+      over = false;
     }
   }
   
-  void noArrossegar()
+  void noDrag()
   {
-    arrossegat = false;
+    dragged = false;
   }
   
-  void arrossegar(int x, int y)
+  void drag(int x, int y)
   {
-    if (arrossegat)
+    if (dragged)
     {
-      posX = x + compensaX;
-      posY = y + compensaY;
+      posX = x + offsetX;
+      posY = y + offsetY;
     }
   }
 }

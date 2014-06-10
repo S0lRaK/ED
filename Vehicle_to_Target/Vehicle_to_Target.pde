@@ -29,7 +29,6 @@ void draw()  // continuosly executed
 void mousePressed()
 {
   target.click(mouseX, mouseY);
-  // S'agrega un cotxe només quan es clica al canvas
   cars.add(car = new Vehicle(){});
 }
 

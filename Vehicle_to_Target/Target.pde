@@ -4,7 +4,7 @@ class Target
   float width, height;        // size
   boolean dragged;            
   boolean over;               // is mouse over target?
-  float offsetX, offsetY;     // compensació al clicar l'objecte amb el ratolí
+  float offsetX, offsetY;     // compensation when object is clicked
   
   // Constructors
   Target(float x, float y, float w, float h)
@@ -31,7 +31,7 @@ class Target
     if (x > posX && x < posX + width && y > posY && y < posY + height)
     {
       dragged = true;
-      // Seguiment de la ubicació relativa
+      // Relative location tracking
       offsetX = posX - x;
       offsetY = posY - y;
     }

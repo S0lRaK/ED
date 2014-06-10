@@ -1,61 +1,63 @@
 // Modes
 final byte modeNormal = 1;
-final byte modeConstruccio = 2;
+final byte modeConstruc = 2;
 
 byte mode = 0;
 
-// Variables globals
-Vehicle cotxe;
-ArrayList<Vehicle> cotxes;
-Objectiu objectiu;
-PImage imgNormal, imgConstruccio;
-hoverNormal = false;
-hoverConstruc = false;
+// Global variables
+Vehicle car;
+ArrayList<Vehicle> cars;
+Target target;
+PImage imgNormal, imgConstruc;
+//hoverNormal = false;
+//hoverConstruc = false;
 
-// S'executa un cop
-void setup() {
+void setup()  // executed just once
+{
   size(1000, 500);
-  // Suavitza (anti-aliasing) les vores de les formes geomètriques i les imatges redimensionades
-  smooth(8);
-  cotxes = new ArrayList<Vehicle>();
+  smooth(8);  // anti-aliased egdes and improved resized quality images
+  cars = new ArrayList<Vehicle>();
 }
 
-// S'executa repetidament
-void draw() {
+void draw()  // continuosly executed
+{
   background(255);
-  mostrarMenu();
-  compararOpcio();
+  menu();
+  //compararOpcio();
   
   switch(mode) {
     case modeNormal:
-      simular();
+      simulate();
       break;
-    case modeConstruccio:
+    case modeConstruc:
       ;
       break;
   }      
 }
 
 // Funcions del ratolí
-void mousePressed() {
+void mousePressed()
+{
   /*if
   objectiu.clicar(mouseX, mouseY);
   cotxes.add(cotxe = new Vehicle(){});
   */
 }
 
-void mouseReleased() {
-  objectiu.noArrossegar();
+void mouseReleased()
+{
+  target.noDrag();
 }
 
-// Funcions del menú (depenen del estat i son cridades desde DRAW)
-void mostrarMenu() {
+// Menu functions (depends on 'mode')
+void menu()
+{
   imgNormal = loadImage("F1.png");
   imgNormal.resize(width/15, height/15);
   image(imgNormal, (40*width)/100, height/10);
-  imgConstruccio = loadImage("Construccio.jpg");
-  imgConstruccio.resize(width/15, height/15);
-  image(imgConstruccio, (60*width)/100, height/10);
+  imgConstruc = loadImage("Construction.jpg");
+  imgConstruc.resize(width/15, height/15);
+  image(imgConstruc, (60*width)/100, height/10);
   
   /*
   fill(#4151D6);
@@ -70,21 +72,24 @@ void mostrarMenu() {
   */
 }
 
-// Comproba si el ratolí està per sobre d'alguna opció del menú
-void compararOpcio() {
+// Verify if mouse is over an option (mode)
+void compararOpcio()
+{
   
 }
 
-void simular() {
-  // Recorrem l'array de cotxes
-  for(byte i = 0; i < cotxes.size(); i++) {
-    Vehicle cotxe = cotxes.get(i);
-    cotxe.visualitzar();
-    cotxe.moure();
+void simulate()
+{
+  // Go through the array of cars
+  for(byte i = 0; i < cars.size(); i++)
+  {
+    Vehicle car = cars.get(i);
+    car.display();
+    car.move();
   }
-  objectiu.perSobre(mouseX, mouseY);
-  objectiu.arrossegar(mouseX, mouseY);
-  objectiu.visualitzar();
+  target.over(mouseX, mouseY);
+  target.drag(mouseX, mouseY);
+  target.display();
   fill(#E83434);
   textSize(10);
   text("Pressiona qualsevol tecla per sortir", (40*width)/100, height - height/15);

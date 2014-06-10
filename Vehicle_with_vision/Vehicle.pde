@@ -1,38 +1,38 @@
 class Vehicle
 {
-  PImage img_cotxe;    // variable per l'arxiu de l'imatge
-  float posX, posY;    // variables per la localització de l'imatge
-  float velocitat;     // variable per la velocitat de l'imatge    
+  PImage imgCar;      // variable of the image's file
+  float posX, posY;   // variables for the loacalization of the image
+  float speed;        // variable of the image's speed    
   
   // Constructors
   Vehicle()
   {
-    img_cotxe = loadImage("F1.png");
+    imgCar = loadImage("F1.png");
     posX = mouseX;
     posY = mouseY;
-    velocitat = random(5);
+    speed = random(3);
   }
   
-  // Mètodes
-  void visualitzar()
+  // Methods
+  void display()
   {
-    img_cotxe.resize(width/15, height/15);
-    image(img_cotxe, posX, posY);
+    imgCar.resize(width/15, height/15);
+    image(imgCar, posX, posY);
   }
   
-  void moure()
+  void move()
   {
-    if(posX > objectiu.posX)
+    if(posX > target.posX)
     {
-      posX = posX - velocitat;
+      posX = posX - speed;
     }else {
-      posX = posX + velocitat;
+      posX = posX + speed;
     }
-    if(posY > objectiu.posY)
+    if(posY > target.posY)
     {
-      posY = posY - velocitat;
+      posY = posY - speed;
     }else {
-      posY = posY + velocitat;
+      posY = posY + speed;
     }
   }
 }
