@@ -8,6 +8,8 @@ class Car
   Car()
   {
     imageCar = loadImage("F1_RedBull_front.png");
+    posX = 0;
+    posY = height/2;
     speed = random(1, 3);
   }
   
@@ -20,6 +22,10 @@ class Car
   
   void move()
   {
-    
+    posX = posX + speed;
+    if(posX > width)
+    {
+      posX = 0;      
+    }
   }
 }
